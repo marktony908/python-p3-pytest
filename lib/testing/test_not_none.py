@@ -1,7 +1,11 @@
-#!/usr/bin/env python3
+# lib/testing/test_not_none.py
 
-from not_none_functions import return_not_none
+from lib.not_none_functions import check_not_none
+import pytest
 
-# def test_return_not_none():
-#     '''in not_none_functions, function "return_not_none" returns a value that is not None.'''
-#     assert False
+def test_check_not_none_valid():
+    assert check_not_none("Test") == "Test"
+
+def test_check_not_none_invalid():
+    with pytest.raises(ValueError, match="Value cannot be None"):
+        check_not_none(None)
